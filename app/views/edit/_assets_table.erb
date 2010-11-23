@@ -1,0 +1,22 @@
+<% unless @assets.empty? %>
+	<% for asset in @assets %>
+		<tr class="node.level-1">
+			<td class="asset">
+				<% asset_id = "asset_#{asset.id.to_s}" %>
+				<%= image_tag(asset.thumbnail(:icon)) %>
+			</td>
+			<td class="asset-title" url="<%= asset.asset.url %>">
+				<%= asset.title %> 
+				&nbsp;
+				<span class="caption"><%= asset.caption %></span>
+			</td>
+			<td class="content-type">
+				<%= asset.asset_content_type %>
+			</td>
+		</tr>
+	<% end %>
+<% else %>
+	<tr>
+		<td class="note" colspan="3">No Assets</td>
+	</tr>
+<% end %>

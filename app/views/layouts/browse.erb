@@ -1,0 +1,18 @@
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title><%= @page_title || default_page_title %></title>
+		<% @stylesheets.uniq.each do |stylesheet| %>
+			<%= stylesheet_link_tag stylesheet %>
+		<% end %>
+		
+		<% @javascripts.uniq.each do |javascript| %>
+			<%= javascript_include_tag javascript %>
+		<% end %>
+		<%= javascript_include_tag "jquery-1.4.3.min" %>
+		<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+	</head>
+	<body>
+		<div id="content"><%=yield %></div>
+	</body>
+</html>

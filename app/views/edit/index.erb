@@ -1,0 +1,10 @@
+<% form_tag "/admin/pages/#{@page.id}", :multipart => true do -%>
+  <div id="content_header">Page content</div>      
+  <textarea id="editor" class="ckeditor" name="page[parts_attributes][0][content]" rows="10">
+    <%= @content %>
+  </textarea>
+  <input type="hidden" name="part" id="part" value="<%= @part_name %>" />
+  <input type="hidden" name="page_id" id="page_id" value="<%= @page.id %>">
+  <input type="hidden" name="_method" value="put" />  
+<% end -%>
+

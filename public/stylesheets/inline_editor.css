@@ -1,0 +1,12 @@
+div.editor-link 
+{ 
+	display : block; background : #000; padding : 5px; float : left; 
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	
+	-webkit-box-shadow: rgba(0, 0, 0, 0.496094) 1px 2px 6px;	
+}
+div.editor-link a { font-size : 16px; color : #fff;}
+
+textarea.mce_editor { width : 600px; height : 400px;}
