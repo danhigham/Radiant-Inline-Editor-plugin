@@ -1,3 +1,20 @@
-= Inline Editor
+== Inline Editor
 
-Description goes here
+Simple, if you want to be able to give users the ability to edit content from the front of the site, install this extension either via github or ext.radiantcms.org and do the following;
+
+== Installation
+
+Either;
+
+cd your_radiant_project
+git clone git://github.com/danhigham/Radiant-Inline-Editor-plugin.git vendor/extensions/inline_editor
+
+or
+
+script/extension install inline_editor
+
+Insert the <r:editor_libs /> tag in the header of the layout from which pages you want to edit inherit. 
+
+Then, insert <r:editor>Edit</r:editor> in the body of the layout where you want the edit link to appear. You can also specify the part name too, as in <r:editor part="extended">Edit Sidebar</r:editor>, the text you specify inside the tag is the label displayed as part of the edit link.
+
+The user has to be logged in as an administrative permission to see the editor.
