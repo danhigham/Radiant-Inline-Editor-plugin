@@ -17,11 +17,11 @@ class SiteController < ApplicationController
       url = url.to_s
     end
     if @page = find_page(url)
-      user = UserActionObserver.current_user
+      @user = UserActionObserver.current_user
       
       batch_page_status_refresh if (url == "/" || url == "")
       process_page(@page)
-      set_cache_control(user.nil?)
+      set_cache_control(@user)
       @performed_render ||= true
     else
       render :template => 'site/not_found', :status => 404
@@ -46,17 +46,17 @@ class SiteController < ApplicationController
     end
   
     def set_cache_control(logged_in)
-      #if (request.head? || request.get?) && @page.cache? && live? && !logged_in
-      #  expires_in self.class.cache_timeout, :public => true, :private => false
-      #else
+      if (request.head? || request.get?) && @page.cache? && !logged_in
+        expires_in self.class.cache_timeout, :public => true, :private => false
+      else
         expires_in nil, :private => true, "no-cache" => true
         headers['ETag'] = ''
-      #end
+      end
     end
         
     def find_page(url)
       found = Page.find_by_url(url, live?)
-      found if found and (found.published? or dev?)
+      found if found and (found.published? or dev? or @user.admin)
     end
 
     def process_page(page)
@@ -73,7 +73,14 @@ class SiteController < ApplicationController
     end
     
     def live?
-      not dev?
+      not dev? and not admin?
     end
 
+     def admin?
+        if !@user.nil?
+          @user.admin
+        else 
+          false
+        end
+      end
 end
