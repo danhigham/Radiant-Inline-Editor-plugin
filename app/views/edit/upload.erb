@@ -1,0 +1,8 @@
+<script>
+  var dialog = parent.CKEDITOR.dialog.getCurrent();
+  var uploadControl = dialog.getContentElement('Upload', 'upload');
+  uploadControl.reset();  
+
+  dialog.setValueOf('info', 'txtUrl', '<%= @asset.asset.url %>');
+  dialog.selectPage('info');
+</script>

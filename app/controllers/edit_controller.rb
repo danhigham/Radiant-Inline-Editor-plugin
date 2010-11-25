@@ -36,4 +36,11 @@ class EditController < ApplicationController
     end
   end
   
+  def upload
+    @asset = Asset.new(:asset => params[:upload]) 
+    @asset.save
+
+    #render :text => asset.asset.url
+  end
+  
 end
