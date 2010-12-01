@@ -1,3 +1,4 @@
+
 class SiteController < ApplicationController
   include Radiant::Pagination::Controller
   
@@ -46,9 +47,12 @@ class SiteController < ApplicationController
     end
   
     def set_cache_control(logged_in)
+      
       if (request.head? || request.get?) && @page.cache? && !logged_in
         expires_in self.class.cache_timeout, :public => true, :private => false
+        #expires_in nil, :private => true, "no-cache" => true
       else
+        #expires_in 0.seconds, :allow_revalidate => true, :allow_reload => true, :public => false, :private => true
         expires_in nil, :private => true, "no-cache" => true
         headers['ETag'] = ''
       end
