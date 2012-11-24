@@ -6,18 +6,6 @@ class InlineEditorExtension < Radiant::Extension
   description "Describe your extension here"
   url "http://yourwebsite.com/inline_editor"
   
-  define_routes do |map|
-    map.connect 'edit/upload', :controller => 'edit', :action => 'upload'   
-    map.connect 'edit/browse', :controller => 'edit', :action => 'browse_assets'   
-    #map.connect 'edit/add', :controller => 'editor', :action => 'add_page'   
-    #map.connect 'edit/commit', :controller => 'editor', :action => 'commit_details'   
-    #map.connect 'edit/commit/:id', :controller => 'editor', :action => 'commit_details'   
-    #map.connect 'edit/detail/:id', :controller => 'editor', :action => 'edit_page'   
-    map.connect 'edit/:id', :controller => 'edit', :action => 'index'
-    map.connect 'edit/:action/:id', :controller => 'edit'
-  end
-  
-  
   # extension_config do |config|
   #   config.gem 'some-awesome-gem
   #   config.after_initialize do
